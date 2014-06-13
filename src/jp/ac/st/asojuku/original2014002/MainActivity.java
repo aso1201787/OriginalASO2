@@ -1,14 +1,12 @@
 package jp.ac.st.asojuku.original2014002;
 
-import android.os.Bundle;
+import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.app.Activity;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.EditText;
 
 public class MainActivity extends Activity implements View.OnClickListener{
@@ -43,6 +41,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		return;
 	}
 
+}
+
 	@Override
 	public void onClick(View v) {
 
@@ -50,7 +50,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
 		switch(v.getId()){
 		case R.id.btnENTRY:
-			android.widget.EditText etv = (EditText)findViewById(R.id.edtMsg);
+			EditText etv = (EditText)findViewById(R.id.edtMsg);
 			String inputMsg =etv.getText().toString();
 			if(inputMsg!=null && !inputMsg.isEmpty()){
 
@@ -62,6 +62,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			break;
 		case R.id.btnMAINTE:
 			intent = new Intent(MainActivity.this, MaintenanceActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.btnCLECK:
+
+			String strHitokoto =helper.selectRandomHitokoto(sdb);
+			intent =new Intent(MainActivity.this, HitokotoActivity.class);
 			intent.putExtra("hitokoto", strHitokoto);
 
 			startActivity(intent);
@@ -69,6 +75,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
 		}
 
+		}
 	}
 
 
