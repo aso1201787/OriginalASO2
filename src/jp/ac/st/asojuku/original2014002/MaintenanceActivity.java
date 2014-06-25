@@ -35,7 +35,7 @@ int lastPosition = -1;
 
 	Button btnDelete = (Button)findViewById(R.id.btnDELETE);
 	Button btnMainte_Back = (Button)findViewById(R.id.btnMAINTE_BACK);
-	ListView lstHitokoto = (ListView)findViewById(R.id.lstHITOKOTO);
+	ListView lstHitokoto = (ListView)findViewById(R.id.lstHitokoto);
 
 	btnDelete.setOnClickListener(this);
 	btnMainte_Back.setOnClickListener(this);
@@ -57,7 +57,7 @@ int lastPosition = -1;
 			sdb = helper.getWritableDatabase();
 		}catch(SQLiteException e){
 			Log.e("ERROR", e.toString());
-
+		}
 		cursor = this.helper.selectHitokotoList(sdb);
 		int db_layout = android.R.layout.simple_list_item_activated_1;
 		String[]from = {"phrase"};
@@ -67,7 +67,7 @@ int lastPosition = -1;
 
 		lstHitokoto.setAdapter(adapter);
 
-		}
+
 
 
 
@@ -91,7 +91,7 @@ int lastPosition = -1;
 		case R.id.btnDELETE:
 			if(this.selectedID != -1){
 				this.deleteFromHitokoto(this.selectedID);
-				ListView lstHitokoto = (ListView)findViewById(R.id.lstHITOKOTO);
+				ListView lstHitokoto = (ListView)findViewById(R.id.lstHitokoto);
 				this.setDBValuetoList(lstHitokoto);
 				this.selectedID = -1;
 				this.lastPosition = -1;
@@ -100,9 +100,8 @@ int lastPosition = -1;
 				Toast.makeText(MaintenanceActivity.this,"削除する行はよ", Toast.LENGTH_SHORT).show();
 			}break;
 		case R.id.btnMAINTE_BACK:
-
 			finish();
-
+			break;
 		}
 
 	}
